@@ -47,20 +47,20 @@
                                     value="{{ old('instagram') }}" placeholder="Contoh : @solas.id">
                             </div>
                         </div>
-                        {{-- <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Wilayah <span class="text-danger">*</span></label>
                                 @php
                                     $instansi = App\Models\Instansi::all();
                                 @endphp
-                                <select name="wilayah_id" class="form-select">
+                                <select class="form-select">
                                     <option selected disabled>== Pilih Wilayah ==</option>
                                     @foreach ($instansi as $item)
                                         <option value="{{ $item->id }}">{{ $item->instansi }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Spesialis <span class="text-danger">*</span></label>
