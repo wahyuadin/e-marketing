@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
-use App\Services\DokterService;
+use App\Models\Instansi;
+use App\Services\InstansiService;
 use Illuminate\Http\Request;
 
-class DokterController extends Controller
+class InstansiController extends Controller
 {
-    protected $dokter;
-    public function __construct(DokterService $dokter)
+    protected $instansi;
+    public function __construct(InstansiService $instansi)
     {
-        $this->dokter = $dokter;
+        $this->instansi = $instansi;
     }
+
     public function index()
     {
         confirmDelete('Hapus Data', 'Apakah anda yakin ingin menghapus data ini?');
-        return view('superadmin.dokter.index', ['data' => Dokter::showData()]);
+        return view('superadmin.instansi.index', ['data' => Instansi::showData()]);
     }
 
     /**
@@ -32,7 +33,7 @@ class DokterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->dokter->create($request);
+        $this->instansi->create($request);
         return redirect()->back();
     }
 
@@ -65,7 +66,7 @@ class DokterController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->dokter->delete($id);
+        $this->instansi->delete($id);
         return redirect()->back();
     }
 }

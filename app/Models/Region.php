@@ -7,13 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Jabatan extends Model
+class Region extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
+
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public static function showData($id = null)
     {
-        return $id ? self::find($id)->latest()->get() : self::latest()->get();
+        return $id ? self::find($id)->with('user')->latest() : self::with('user')->latest()->get();
     }
 }

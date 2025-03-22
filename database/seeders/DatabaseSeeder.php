@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             InstansiSeeder::class,
             SpesialiSeeder::class,
+            WilayahSeeder::class,
         ]);
     }
 }

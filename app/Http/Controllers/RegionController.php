@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dokter;
-use App\Services\DokterService;
+use App\Models\Region;
 use Illuminate\Http\Request;
+use App\Services\RegionService;
 
-class DokterController extends Controller
+class RegionController extends Controller
 {
-    protected $dokter;
-    public function __construct(DokterService $dokter)
+    protected $region;
+    public function __construct(RegionService $region)
     {
-        $this->dokter = $dokter;
+        $this->region = $region;
     }
+
     public function index()
     {
         confirmDelete('Hapus Data', 'Apakah anda yakin ingin menghapus data ini?');
-        return view('superadmin.dokter.index', ['data' => Dokter::showData()]);
+        return view('superadmin.region.index', ['data' => Region::showData()]);
     }
 
     /**
@@ -32,7 +33,7 @@ class DokterController extends Controller
      */
     public function store(Request $request)
     {
-        $this->dokter->create($request);
+        $this->region->create($request);
         return redirect()->back();
     }
 
@@ -65,7 +66,7 @@ class DokterController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->dokter->delete($id);
+        $this->region->delete($id);
         return redirect()->back();
     }
 }

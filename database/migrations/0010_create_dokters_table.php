@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('instansi_id')->nullable()->references('id')->on('instansis')->onDelete('cascade');
             $table->foreignUuid('spesialis_id')->nullable()->references('id')->on('spesialis')->onDelete('cascade');
-            // $table->foreignUuid('wilayah_id')->references('id')->on('wilayahs')->onDelete('cascade');
+            $table->foreignUuid('wilayah_id')->references('id')->on('wilayahs')->onDelete('cascade');
             $table->string('dokter');
             $table->string('email')->unique();
             $table->string('instagram')->nullable();

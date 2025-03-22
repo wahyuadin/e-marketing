@@ -20,7 +20,14 @@
                             <tr>
                                 <th style="width : 5%">No</th>
                                 <th>Nama Dokter</th>
+                                <th>Email</th>
+                                <th>Instansi</th>
+                                <th>Instagram</th>
+                                <th>Wilayah</th>
                                 <th>Spesialis</th>
+                                <th>Alamat Rumah</th>
+                                <th>Alamat Praktek</th>
+                                <th>No Telp</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -29,7 +36,14 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $datas->dokter ?? '-' }}</td>
+                                    <td>{{ $datas->email ?? '-' }}</td>
+                                    <td>{{ $datas->instansi->instansi ?? '-' }}</td>
+                                    <td>{{ $datas->instagram ?? '-' }}</td>
+                                    <td>{{ $datas->wilayah->wilayah ?? '-' }}</td>
                                     <td>{{ $datas->spesialis->spesialis ?? '-' }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($datas->alamat_rumah ?? '-', 50) }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($datas->alamat_praktek ?? '-', 50) }}</td>
+                                    <td>{{ $datas->no_hp ?? '-' }}</td>
                                     <td class="d-flex flex-column flex-sm-row gap-2">
                                         <!-- Tombol Edit -->
                                         <button data-bs-toggle="modal" data-bs-target="#editData{{ $datas->id }}"
@@ -37,9 +51,8 @@
                                         </button>
 
                                         <!-- Tombol Detail -->
-                                        {{-- <a href="{{ route('dokter-data.show', $datas->id) }}"
-                                            class="btn btn-info btn-sm bx bx-detail" title="Detail">
-                                        </a> --}}
+                                        <a href="" class="btn btn-info btn-sm bx bx-detail" title="Detail">
+                                        </a>
 
                                         <!-- Tombol Hapus -->
                                         <a href="{{ route('dokter.destroy', $datas->id) }}"

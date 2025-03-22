@@ -11,7 +11,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item {{ Request::is('dashboard*') ? 'active' : '' }}">
-            <a href="" class="menu-link">
+            <a href="{{ route('dashboard-superadmin.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bi bi-house-door"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -34,24 +34,24 @@
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('master-data/instansi*') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('instansi.index') }}" class="menu-link">
                         <div data-i18n="Account">Instansi</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('master-data/spesialis*') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('spesialis.index') }}" class="menu-link">
                         <div data-i18n="Account">Spesialis</div>
                     </a>
                 </li>
                 <hr>
                 <li class="menu-item {{ Request::is('master-data/regional*') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
+                    <a href="{{ route('regional.index') }}" class="menu-link">
                         <div data-i18n="Account">Regional</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('master-data/cabang*') ? 'active' : '' }}">
-                    <a href="" class="menu-link">
-                        <div data-i18n="Account">Cabang</div>
+                <li class="menu-item {{ Request::is('master-data/wilayah*') ? 'active' : '' }}">
+                    <a href="{{ route('wilayah.index') }}" class="menu-link">
+                        <div data-i18n="Account">Wilayah</div>
                     </a>
                 </li>
                 <li class="menu-item {{ Request::is('master-data/absensi*') ? 'active' : '' }}">

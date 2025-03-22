@@ -2,34 +2,34 @@
 
 namespace App\Services;
 
-use App\Models\Dokter;
+use App\Models\Instansi;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class DokterService
+class InstansiService
 {
 
     public function create($request)
     {
         $request->validate([
-            'dokter' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:dokters,email,NULL,id,deleted_at,NULL',
-            'wilayah_id' => 'required|exists:wilayahs,id',
-            'instagram' => 'nullable|string|max:255',
-            'no_hp' => 'required|min:10|max:20',
-            'alamat_rumah' => 'nullable|string',
-            'alamat_praktek' => 'nullable|string',
-            'bank_1' => 'required|string|max:255',
-            'rekening_1' => 'required|string|max:255',
-            'bank_2' => 'nullable|string|max:255',
-            'rekening_2' => 'nullable|string|max:255',
-            'instansi_id' => 'required|exists:instansis,id',
-            'spesialis_id' => 'required|exists:spesialis,id',
+            'instansi' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'email' => 'required|email|max:255|unique:instansis,email,NULL,id,deleted_at,NULL',
+            'no_hp' => 'required|string|max:20',
+            'kategori' => 'required|in:apotek,rs',
+        ], [
+            'instansi.required' => 'Instansi harus diisi',
+            'alamat.required' => 'Alamat harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'no_hp.required' => 'No HP harus diisi',
+            'kategori.required' => 'Kategori harus diisi',
+            'kategori.in' => 'Kategori tidak valid',
         ]);
 
         try {
             DB::beginTransaction();
-            Dokter::create($request->all());
+            Instansi::create($request->all());
             Alert::success('Sukses', 'Data berhasil disimpan');
             DB::commit();
         } catch (\Throwable $th) {
@@ -48,7 +48,7 @@ class DokterService
     {
         try {
             DB::beginTransaction();
-            Dokter::find($id)->delete();
+            Instansi::find($id)->delete();
             Alert::success('Sukses', 'Data berhasil dihapus');
             DB::commit();
         } catch (\Throwable $th) {

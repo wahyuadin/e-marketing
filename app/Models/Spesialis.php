@@ -11,4 +11,9 @@ class Spesialis extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
     protected $guarded = [];
+
+    public static function showData($id = null)
+    {
+        return $id ? self::find($id)->latest()->get() : self::latest()->get();
+    }
 }

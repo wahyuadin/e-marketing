@@ -13,8 +13,23 @@ class Dokter extends Model
 
     protected $guarded = [];
 
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class);
+    }
+
+    public function spesialis()
+    {
+        return $this->belongsTo(Spesialis::class);
+    }
+
+    public function wilayah()
+    {
+        return $this->belongsTo(Wilayah::class);
+    }
+
     public static function showData($id = null)
     {
-        return $id ? self::where('id', $id)->latest() : self::latest()->get();
+        return $id ? self::where('id', $id)->with('instansi', 'spesialis', 'wilayah')->latest() : self::with('instansi', 'spesialis', 'wilayah')->latest()->get();
     }
 }

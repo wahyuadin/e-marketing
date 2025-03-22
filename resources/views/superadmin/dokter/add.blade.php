@@ -35,7 +35,9 @@
                                 <select name="instansi_id" class="form-select">
                                     <option selected disabled>== Pilih Instansi ==</option>
                                     @foreach ($instansi as $item)
-                                        <option value="{{ $item->id }}">{{ $item->instansi }}</option>
+                                        <option value="{{ $item->id }}"
+                                            {{ old('instansi_id') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->instansi }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -51,12 +53,14 @@
                             <div class="mb-3">
                                 <label class="form-label">Wilayah <span class="text-danger">*</span></label>
                                 @php
-                                    $instansi = App\Models\Instansi::all();
+                                    $wilayah = App\Models\Wilayah::all();
                                 @endphp
-                                <select class="form-select">
+                                <select class="form-select" name="wilayah_id">
                                     <option selected disabled>== Pilih Wilayah ==</option>
-                                    @foreach ($instansi as $item)
-                                        <option value="{{ $item->id }}">{{ $item->instansi }}</option>
+                                    @foreach ($wilayah as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('wilayah_id') == $item->id ? 'selected' : '' }}>{{ $item->wilayah }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -70,7 +74,9 @@
                                 <select name="spesialis_id" class="form-select">
                                     <option selected disabled>== Pilih Spesialis ==</option>
                                     @foreach ($spesialis as $item)
-                                        <option value="{{ $item->id }}">{{ $item->spesialis }}</option>
+                                        <option value="{{ $item->id }}"
+                                            {{ old('spesialis_id') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->spesialis }}</option>
                                     @endforeach
                                 </select>
                             </div>

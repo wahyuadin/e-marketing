@@ -11,4 +11,9 @@ class Instansi extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
     protected $guarded = [];
+
+    public static function showData($id = null)
+    {
+        return $id ? self::where('id', $id)->latest() : self::latest()->get();
+    }
 }

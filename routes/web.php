@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\DashboardSuperadminController;
 use App\Http\Controllers\DokterController;
+use App\Http\Controllers\InstansiController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\SpesialisController;
+use App\Http\Controllers\WilayahController;
 use App\Http\Middleware\SesiFalse;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +20,10 @@ Route::middleware('role:superadmin')->group(function () {
     Route::prefix('master-data')->group(function () {
         Route::resource('karyawan', KaryawanController::class);
         Route::resource('dokter', DokterController::class);
-        // Route::resource('instansi', App\Http\Controllers\Master\InstansiController::class);
-        // Route::resource('spesialis', App\Http\Controllers\Master\SpesialisController::class);
-        // Route::resource('regional', App\Http\Controllers\Master\RegionalController::class);
-        // Route::resource('cabang', App\Http\Controllers\Master\CabangController::class);
+        Route::resource('instansi', InstansiController::class);
+        Route::resource('spesialis', SpesialisController::class);
+        Route::resource('regional', RegionController::class);
+        Route::resource('wilayah', WilayahController::class);
         // Route::resource('absensi', App\Http\Controllers\Master\AbsensiController::class);
     });
 });
