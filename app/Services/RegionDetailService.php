@@ -2,27 +2,26 @@
 
 namespace App\Services;
 
-use App\Models\Wilayah;
+use App\Models\RegionDetail;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class WilayahService
+class RegionDetailService
 {
-
     public function create($request)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'wilayah' => 'required',
-        ], [
-            'user_id.required' => 'User tidak boleh kosong',
-            'user_id.exists' => 'User tidak ditemukan',
-            'wilayah.required' => 'Wilayah tidak boleh kosong',
+            'region_id' => 'required|exists:regions,id',
+            'wilayah_id' => 'required|exists:wilayahs,id',
         ]);
-
         try {
             DB::beginTransaction();
-            Wilayah::create($request->all());
+            foreach ($request->wilayah_id as $wilayahId) {
+                RegionDetail::create([
+                    'region_id' => $request->region_id,
+                    'wilayah_id' => $wilayahId,
+                ]);
+            }
             Alert::success('Sukses', 'Data berhasil ditambahkan');
             DB::commit();
         } catch (\Throwable $th) {
@@ -30,23 +29,18 @@ class WilayahService
             Alert::error('Kesalahan', 'Data gagal ditambahkan');
             throw $th;
         }
-        return redirect()->back();
     }
 
     public function update($request, $id)
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'region' => 'required',
-        ], [
-            'user_id.required' => 'User tidak boleh kosong',
-            'user_id.exists' => 'User tidak ditemukan',
-            'region.required' => 'Region tidak boleh kosong',
+            'region_id' => 'required|exists:regions,id',
+            'wilayah_id' => 'required|exists:wilayahs,id',
         ]);
 
         try {
             DB::beginTransaction();
-            Wilayah::find($id)->update($request->all());
+            RegionDetail::update($id, $request->all());
             Alert::success('Sukses', 'Data berhasil diubah');
             DB::commit();
         } catch (\Throwable $th) {
@@ -60,7 +54,7 @@ class WilayahService
     {
         try {
             DB::beginTransaction();
-            Wilayah::find($id)->delete();
+            RegionDetail::find($id)->delete();
             Alert::success('Sukses', 'Data berhasil dihapus');
             DB::commit();
         } catch (\Throwable $th) {

@@ -25,6 +25,7 @@
                                 <th>No</th>
                                 <th>Region</th>
                                 <th>NSM</th>
+                                <th>Wilayah</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,11 +35,30 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $datas->region ?? '-' }}</td>
                                     <td>{{ $datas->user->nama ?? '-' }}</td>
-                                    <td class="d-flex flex-column flex-sm-row">
-                                        <button data-bs-toggle="modal" data-bs-target="#editData{{ $datas->id }}"
-                                            class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
+                                    <td>
+                                        @if ($datas->regiondetails->count() > 0)
+                                            <ul>
+                                                @foreach ($datas->regiondetails->take(2) as $regiondetailsitem)
+                                                    <li>{{ $regiondetailsitem->wilayah->wilayah ?? '-' }}</li>
+                                                @endforeach
+                                                @if ($datas->regiondetails->count() > 3)
+                                                    <li>...</li>
+                                                @endif
+                                            </ul>
+                                        @else
+                                            Tidak Ada Data
+                                        @endif
+                                    </td>
+                                    <td class="d-flex flex-column flex-sm-row gap-2">
+                                        <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $datas->id }}"
+                                            class="btn btn-warning btn-sm mb-2 mb-sm-0 bx bx-edit">
+                                        </button>
+                                        <a href="{{ route('regional-detail.show', $datas->id) }}"
+                                            class="btn btn-info btn-sm mb-2 mb-sm-0 bx bx-detail">
+                                        </a>
                                         <a href="{{ route('regional.destroy', $datas->id) }}"
-                                            class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a>
+                                            class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true">
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

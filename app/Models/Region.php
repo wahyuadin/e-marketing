@@ -18,8 +18,13 @@ class Region extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function regiondetails()
+    {
+        return $this->hasMany(RegionDetail::class);
+    }
+
     public static function showData($id = null)
     {
-        return $id ? self::find($id)->with('user')->latest() : self::with('user')->latest()->get();
+        return $id ? self::find($id)->with('user', 'regiondetails.wilayah')->latest() : self::with('user', 'regiondetails.wilayah')->latest()->get();
     }
 }

@@ -51,8 +51,9 @@
                                         </button>
 
                                         <!-- Tombol Detail -->
-                                        <a href="" class="btn btn-info btn-sm bx bx-detail" title="Detail">
-                                        </a>
+                                        <button data-bs-toggle="modal" data-bs-target="#detailData{{ $datas->id }}"
+                                            class="btn btn-info btn-sm bx bx-detail">
+                                        </button>
 
                                         <!-- Tombol Hapus -->
                                         <a href="{{ route('dokter.destroy', $datas->id) }}"
@@ -69,7 +70,7 @@
         </div>
     </div>
     @include('superadmin.dokter.add')
-    {{-- @include('admin.dokter.edit') --}}
+    @include('superadmin.dokter.detail')
     @push('style')
         {{-- datatable --}}
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">

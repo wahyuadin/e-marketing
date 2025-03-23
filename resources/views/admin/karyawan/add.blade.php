@@ -21,21 +21,6 @@
                                     value="{{ old('nama') }}" placeholder="Nama Karyawan">
                             </div>
                             <div class="mb-3">
-                                <label for="jabatan" class="form-label">Jabatan <span
-                                        class="text-danger">*</span></label>
-                                <select name="jabatan_id" class="form-select" required>
-                                    <option selected disabled>== Pilih Jabatan ==</option>
-                                    @php
-                                        $jabatan = App\Models\Jabatan::all();
-                                    @endphp
-                                    @foreach ($jabatan as $item)
-                                        <option value="{{ $item->id }}"
-                                            {{ old('jabatan_id') == $item->id ? 'selected' : '' }}>{{ $item->jabatan }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-3">
                                 <label for="no_hp" class="form-label">No Telepon
                                     <span class="text-danger">*</span>
                                 </label>
@@ -75,7 +60,7 @@
                                 <label for="alamat" class="form-label">Alamat
                                     <span class="text-danger">*</span>
                                 </label>
-                                <textarea name="alamat" class="form-control" rows="3" style="height: 213px;">{{ old('alamat') }}</textarea>
+                                <textarea name="alamat" class="form-control" rows="3" style="height: 123px;">{{ old('alamat') }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="role" class="form-label">

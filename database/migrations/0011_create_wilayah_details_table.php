@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('wilayah_id')->references('id')->on('wilayahs')->onDelete('cascade');
             $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade'); // MR
-            $table->foreignUuid('dokter_id')->references('id')->on('dokters')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

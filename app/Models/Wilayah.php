@@ -22,8 +22,13 @@ class Wilayah extends Model
         return $this->hasMany(WilayahDetail::class);
     }
 
+    public function dokter()
+    {
+        return $this->hasMany(Dokter::class);
+    }
+
     public static function showData($id = null)
     {
-        return $id ? self::find($id)->with('user', 'wilayahdetails')->latest() : self::with('user', 'wilayahdetails')->latest()->get();
+        return $id ? self::find($id)->with('user', 'wilayahdetails.wilayah', 'wilayahdetails.user', 'dokter')->latest() : self::with('user', 'wilayahdetails.wilayah', 'wilayahdetails.user', 'dokter')->latest()->get();
     }
 }

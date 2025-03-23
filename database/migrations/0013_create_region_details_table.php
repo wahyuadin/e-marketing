@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('region_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('user_id')->references('id')->on('users')->onDelete('cascade'); // NSM
-            $table->string('region');
+            $table->foreignUuid('region_id')->references('id')->on('regions')->onDelete('cascade');
+            $table->foreignUuid('wilayah_id')->references('id')->on('wilayahs')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

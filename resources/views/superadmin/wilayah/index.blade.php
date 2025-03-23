@@ -25,6 +25,8 @@
                                 <th>No</th>
                                 <th>Wilayah</th>
                                 <th>AM</th>
+                                <th>MR</th>
+                                <th>Dokter</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,11 +36,44 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $datas->wilayah ?? '-' }}</td>
                                     <td>{{ $datas->user->nama ?? '-' }}</td>
-                                    <td class="d-flex flex-column flex-sm-row">
-                                        <button data-bs-toggle="modal" data-bs-target="#editData{{ $datas->id }}"
-                                            class="btn btn-warning btn-sm mb-2 mb-sm-0 me-sm-2 bx bx-edit"></button>
+                                    <td>
+                                        @if ($datas->wilayahdetails->count() > 0)
+                                            <ul>
+                                                @foreach ($datas->wilayahdetails->take(2) as $wilayahdetailsitem)
+                                                    <li>{{ $wilayahdetailsitem->user->nama ?? '-' }}</li>
+                                                @endforeach
+                                                @if ($datas->wilayahdetails->count() > 3)
+                                                    <li>...</li>
+                                                @endif
+                                            </ul>
+                                        @else
+                                            Tidak Ada Data
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($datas->dokter->count() > 0)
+                                            <ul>
+                                                @foreach ($datas->dokter->take(2) as $dokteritem)
+                                                    <li>{{ $dokteritem->dokter ?? '-' }}</li>
+                                                @endforeach
+                                                @if ($datas->dokter->count() > 3)
+                                                    <li>...</li>
+                                                @endif
+                                            </ul>
+                                        @else
+                                            Tidak Ada Data
+                                        @endif
+                                    </td>
+                                    <td class="d-flex flex-column flex-sm-row gap-2">
+                                        <button data-bs-toggle="modal" data-bs-target="#ModalEdit{{ $datas->id }}"
+                                            class="btn btn-warning btn-sm mb-2 mb-sm-0 bx bx-edit">
+                                        </button>
+                                        <a href="{{ route('wilayah-detail.show', $datas->id) }}"
+                                            class="btn btn-info btn-sm mb-2 mb-sm-0 bx bx-detail">
+                                        </a>
                                         <a href="{{ route('wilayah.destroy', $datas->id) }}"
-                                            class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true"></a>
+                                            class="btn btn-danger btn-sm bx bx-trash" data-confirm-delete="true">
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,7 +83,7 @@
             </div>
         </div>
     </div>
-    @include('superadmin.region.add')
+    @include('superadmin.wilayah.add')
     {{-- @include('admin.karyawan.edit') --}}
     @push('style')
         {{-- datatable --}}

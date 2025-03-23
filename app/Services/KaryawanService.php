@@ -14,7 +14,6 @@ class KaryawanService
     {
         $request->validate([
             'nama' => 'required',
-            'jabatan_id' => 'required|exists:jabatans,id',
             'alamat' => 'required|max:255',
             'no_hp' => 'required|min:10|max:13|unique:users,no_hp',
             'nip' => 'required|unique:users,nip',
@@ -57,7 +56,6 @@ class KaryawanService
     {
         $request->validate([
             'nama' => 'required',
-            'jabatan_id' => 'required|exists:jabatans,id',
             'alamat' => 'required|max:255',
             'no_hp' => 'required|max:13|unique:users,no_hp|regex:/^([0-9\s\-\+\(\)]+)$/|min:10|numeric',
             'nip' => 'required',

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('nip')->unique();
-            $table->foreignUuid('jabatan_id')->nullable()->references('id')->on('jabatans')->onDelete('cascade');
             $table->string('password')->unique();
             $table->string('nama');
             $table->text('alamat');

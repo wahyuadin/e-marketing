@@ -1,7 +1,8 @@
 <div class="modal fade" id="addData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form action="" method="POST" class="needs-validation" enctype="multipart/form-data">
+            <form action="{{ route('dokter.store') }}" method="POST" class="needs-validation"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Dokter || {{ config('app.name') }}
@@ -37,7 +38,8 @@
                                     @foreach ($instansi as $item)
                                         <option value="{{ $item->id }}"
                                             {{ old('instansi_id') == $item->id ? 'selected' : '' }}>
-                                            {{ $item->instansi }}</option>
+                                            {{ $item->instansi }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -76,7 +78,8 @@
                                     @foreach ($spesialis as $item)
                                         <option value="{{ $item->id }}"
                                             {{ old('spesialis_id') == $item->id ? 'selected' : '' }}>
-                                            {{ $item->spesialis }}</option>
+                                            {{ $item->spesialis }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

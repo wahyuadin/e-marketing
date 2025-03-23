@@ -24,6 +24,6 @@ class RegionDetail extends Model
 
     public static function showData($id = null)
     {
-        return $id ? self::find($id)->with('region', 'wilayah')->get() : self::with('region', 'wilayah')->latest()->get();
+        return $id ? self::where('region_id', $id)->with('region', 'wilayah.wilayahdetails.user')->latest()->get() : self::with('region', 'wilayah.wilayahdetails.user')->latest()->get();
     }
 }

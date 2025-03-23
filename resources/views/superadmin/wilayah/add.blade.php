@@ -1,7 +1,7 @@
 <div class="modal fade" id="addData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <form action="{{ route('regional.store') }}" method="POST" class="needs-validation"
+            <form action="{{ route('wilayah.store') }}" method="POST" class="needs-validation"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
@@ -12,22 +12,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="region" class="form-label">Region <span
+                                <label for="wilayah" class="form-label">Wilayah <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="region" id="region" required
-                                    value="{{ old('region') }}" placeholder="Masukan Region">
+                                <input type="text" class="form-control" name="wilayah" id="wilayah" required
+                                    value="{{ old('wilayah') }}" placeholder="Masukan Wilayah">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">NSM <span class="text-danger">*</span></label>
+                                <label class="form-label">AM <span class="text-danger">*</span></label>
                                 <select name="user_id" class="form-select">
                                     @php
-                                    $user = App\Models\user::all();
+                                        $user = App\Models\user::where('role', 'AM')->get();
                                     @endphp
                                     <option selected disabled>== Pilih Salah Satu ==</option>
                                     @foreach ($user as $users)
-                                    <option value="{{ $users->id }}">{{ $users->nama }}</option>
+                                        <option value="{{ $users->id }}">{{ $users->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>

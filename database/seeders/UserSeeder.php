@@ -14,14 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Role Super User
-        $jabatanAdmin = Jabatan::where('jabatan', 'Admin')->value('id');
-
         User::create([
             'nip' => '11223344',
             'password' => bcrypt('password'),
             'nama' => 'Super Admin',
-            'jabatan_id' => $jabatanAdmin,
             'alamat' => 'PT SOLAS LANGGENG SEJAHTERA',
             'status' => 'active',
             'role' => 'superadmin',
