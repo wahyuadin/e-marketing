@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DashboardSuperadminController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\InstansiController;
@@ -32,6 +33,6 @@ Route::middleware('role:superadmin')->group(function () {
             Route::resource('wilayah', WilayahController::class);
             Route::resource('wilayah-detail', WilayahdetailController::class);
         });
-        // Route::resource('absensi', App\Http\Controllers\Master\AbsensiController::class);
     });
+    Route::resource('absensi', AbsensiController::class);
 });

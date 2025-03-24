@@ -43,14 +43,14 @@
                         <div data-i18n="Account">Spesialis</div>
                     </a>
                 </li>
-                <li class="menu-item {{ Request::is('master-data/regional*') ? 'active' : '' }}">
-                    <a href="{{ route('regional.index') }}" class="menu-link">
-                        <div data-i18n="Account">Regional</div>
-                    </a>
-                </li>
                 <li class="menu-item {{ Request::is('master-data/wilayah*') ? 'active' : '' }}">
                     <a href="{{ route('wilayah.index') }}" class="menu-link">
                         <div data-i18n="Account">Wilayah</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ Request::is('master-data/regional*') ? 'active' : '' }}">
+                    <a href="{{ route('regional.index') }}" class="menu-link">
+                        <div data-i18n="Account">Regional</div>
                     </a>
                 </li>
             </ul>
@@ -58,6 +58,13 @@
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Report</span>
+        </li>
+
+        <li class="menu-item {{ Request::is('absensi*') ? 'active' : '' }}">
+            <a href="{{ route('absensi.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bi bi-people"></i>
+                <div data-i18n="Data User">Absensi</div>
+            </a>
         </li>
 
         <li class="menu-item {{ Request::is('sales/*') ? 'open active' : '' }}">
@@ -85,16 +92,14 @@
                 <div data-i18n="Account Settings">Daily Visit</div>
             </a>
         </li>
-        @if (Auth::user()->accept == true)
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Management User</span>
         </li>
         <li class="menu-item {{ Request::is('master-user*') ? 'active' : '' }}">
-            <a href="{{ route('master-user.index.admin') }}" class="menu-link">
+            <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bi bi-person"></i>
                 <div data-i18n="Data User">Data User</div>
             </a>
         </li>
-        @endif
     </ul>
 </aside>
